@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Register</h2>
+	<div th:if="${errorMessage != null}" th:utext="${errorMessage}"
+		class="error">...</div>
+
+	<form th:action="@{/account/register}" th:object="${accountForm}" method="POST">
+		<table>
+			<tr>
+				<td>User Name</td>
+				<td><input type="text" th:field="*{userName}" /></td>
+				<td><span th:if="${#fields.hasErrors('userName')}"
+					th:errors="*{userName}">..</span></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" th:field="*{encrytedPassword}" /></td>
+				<td><span th:if="${#fields.hasErrors('encrytedPassword')}"
+					th:errors="*{password}">..</span></td>
+			</tr>
+			<tr>
+				<td>Confirm</td>
+				<td><input type="password" th:field="*{confirmPassword}" /></td>
+				<td><span th:if="${#fields.hasErrors('confirmPassword')}"
+					th:errors="*{confirmPassword}">..</span></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" value="Submit" /> <a th:href="@{/}">Cancel</a>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
